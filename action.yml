@@ -1,0 +1,64 @@
+---
+# https://help.github.com/en/articles/metadata-syntax-for-github-actions
+name: 'download-artifact-retry'
+description: "GitHub Action to download an artifact with retry functionality."
+author: 'cytopia'
+branding:
+  icon: 'code'
+  color: 'red'
+
+inputs:
+  name:
+    description: 'The artifact name to download.'
+    required: true
+  path:
+    description: 'The local path to download to (defaults to current working directory).'
+    required: false
+    default: '.'
+
+runs:
+  using: "composite"
+  steps:
+
+    - name: download artifact (try-1)
+      id: download-1
+      uses: actions/download-artifact@v2
+      continue-on-error: true
+      with:
+        name: ${{ inputs.name }}
+        path: ${{ inputs.path }}
+
+    - name: download artifact (try-2)
+      id: download-2
+      uses: actions/download-artifact@v2
+      continue-on-error: true
+      with:
+        name: ${{ inputs.name }}
+        path: ${{ inputs.path }}
+      if: ${{ steps.download-1.outcome == 'failure' }}
+
+    - name: download artifact (try-3)
+      id: download-3
+      uses: actions/download-artifact@v2
+      continue-on-error: true
+      with:
+        name: ${{ inputs.name }}
+        path: ${{ inputs.path }}
+      if: ${{ steps.download-2.outcome == 'failure' }}
+
+    - name: download artifact (try-4)
+      id: download-4
+      uses: actions/download-artifact@v2
+      continue-on-error: true
+      with:
+        name: ${{ inputs.name }}
+        path: ${{ inputs.path }}
+      if: ${{ steps.download-3.outcome == 'failure' }}
+
+    - name: download artifact (try-5)
+      id: download-5
+      uses: actions/download-artifact@v2
+      with:
+        name: ${{ inputs.name }}
+        path: ${{ inputs.path }}
+      if: ${{ steps.download-4.outcome == 'failure' }}
