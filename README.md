@@ -18,7 +18,6 @@ The following inputs can be used to alter the Docker tag name determination:
 | `path`         | No       | `.`     | The local path to download to.            |
 
 
-
 ## :arrow_backward: Outputs
 
 None
