@@ -22,7 +22,7 @@ runs:
 
     - name: download artifact (try-1)
       id: download-1
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       continue-on-error: true
       with:
         name: ${{ inputs.name }}
@@ -30,7 +30,7 @@ runs:
 
     - name: download artifact (try-2)
       id: download-2
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       continue-on-error: true
       with:
         name: ${{ inputs.name }}
@@ -39,7 +39,7 @@ runs:
 
     - name: download artifact (try-3)
       id: download-3
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       continue-on-error: true
       with:
         name: ${{ inputs.name }}
@@ -48,7 +48,7 @@ runs:
 
     - name: download artifact (try-4)
       id: download-4
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       continue-on-error: true
       with:
         name: ${{ inputs.name }}
@@ -57,7 +57,7 @@ runs:
 
     - name: download artifact (try-5)
       id: download-5
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: ${{ inputs.name }}
         path: ${{ inputs.path }}
