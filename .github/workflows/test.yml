@@ -25,7 +25,7 @@ jobs:
           echo "::set-output name=path::${NAME}"
 
       - name: upload artifact
-        uses: cytopia/upload-artifact-retry-action@v0.1.2
+        uses: cytopia/upload-artifact-retry-action@v0.1.5
         with:
           name: ${{ steps.file.outputs.path }}
           path: ${{ steps.file.outputs.path }}
